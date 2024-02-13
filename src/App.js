@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Sidebar from "./components/shared/Sidebar";
+import {
+  RiMenu3Fill,
+  RiUser3Line,
+  RiAddLine,
+  RiPieChartLine
+} from 'react-icons/ri';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-[#262837] min-h-screen">
+        <Sidebar/>
+        {/* Menu mobile */}
+        <nav className="bg-[#1F1D2B] lg:hidden fixed w-full bottom-0 left-0 text-3xl text-gray-400 py-4 px-8 flex items-center justify-between rounded-tl-x- rounded-tr-xl">
+          <button><RiUser3Line/></button>
+
+          <button><RiAddLine/></button>
+
+          <button><RiPieChartLine/></button>
+
+          <button className="text-white"><RiMenu3Fill/></button>
+        </nav>
     </div>
   );
 }
