@@ -9,7 +9,8 @@ import {
   RiPieChartLine,
   RiCloseLine,
   RiSearch2Fill,
-  RiArrowDownSLine
+  RiArrowDownSLine,
+  RiDeleteBin6Line
 } from 'react-icons/ri';
 
 function App() {
@@ -18,6 +19,12 @@ function App() {
 
   const toggleMenu= () =>{
     setShowMenu(!showMenu);
+    setShowOrder(false);
+  }
+
+  const toggleOrders = () =>{
+    setShowOrder(!showOrder);
+    setShowMenu(false);
   }
 
   return (
@@ -29,7 +36,7 @@ function App() {
 
           <button className="p-2"><RiAddLine/></button>
 
-          <button className="p-2"><PiPizza/></button>
+          <button onClick={toggleOrders} className="p-2"><PiPizza/></button>
 
           <button onClick={toggleMenu} className="text-white p-2">
             {showMenu ? <RiCloseLine/> : <RiAlignJustify/>}
@@ -133,9 +140,11 @@ function App() {
           </div>
 
           {/* Carrito */}
-          <div className="lg:col-span-2 fixed lg:static right-0 top-0 bg-[#1F1D2B] w-full h-full">
-            <div className="relative pt-16 text-gray-300 p-8">
-              <RiCloseLine className="absolute left-4 top-4 p-3 box-content text-gray-300 bg-[#262837] rounded-full text-xl"/>
+          <div className={`lg:col-span-2 fixed lg:static right-0 top-0 bg-[#1F1D2B] w-full h-full transition-all $ {showOrder ? "right-0" : "-right-1"}`}>
+
+            {/* Orders */}
+            <div className="relative pt-16 text-gray-300 p-8 h-full">
+              <RiCloseLine onClick={toggleOrders} className="absolute left-4 top-4 p-3 box-content text-gray-300 bg-[#262837] rounded-full text-xl"/>
               <h1 className="text-2xl mt-4">Orders #151416</h1>
 
               {/* Pills */}
@@ -158,36 +167,167 @@ function App() {
                   <h5>Price</h5>
                 </div>
 
-                {/* Product */}
-                <div className="bg-[#262837] p-4 rounded-xl">
-                  <div className="grid grid-cols-6">
+                {/* Products */}
+                <div className="h-[400px] overflow-scroll">
 
-                    {/* Product Description */}
-                    <div className="col-span-4 flex items-center gap-3">
-                      <img className="w-10 h-10 object-cover" src="./fotosMenu/menu1.png"/>
+                  {/* Product */}
+                  <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                    <div className="grid grid-cols-6 mb-3">
+
+                      {/* Product Description */}
+                      <div className="col-span-4 flex items-center gap-3">
+                        <img className="w-10 h-10 object-cover" src="./fotosMenu/menu1.png"/>
+                        <div>
+                          <h5 className="text-sm">Spaicy seaso...</h5>
+                          <p className="text-xs text-gray-500">$2.29</p>
+                        </div>
+                      </div>
+
+                      {/* Qty */}
+                      <div className="">
+                        <span>2</span>
+                      </div>
+
+                      {/* Price */}
                       <div>
-                        <h5 className="text-sm">Spaicy seaso...</h5>
-                        <p className="text-xs text-gray-500">$2.29</p>
+                        <span>$4.58</span>
                       </div>
                     </div>
-
-                    {/* Qty */}
-                    <div className="">
-                      <span>2</span>
-                    </div>
-
-                    {/* Price */}
-                    <div>
-                      <span>$4.58</span>
-                    </div>
-
+              
                     {/* Note */}
-                    <div className="grid grid-cols-6">
-                      <form className="col-span-4">
-                        <input type="text" className="bg-[#1F1D2B]"/>
+                    <div className="grid grid-cols-6 items-center gap-2">
+                      <form className="col-span-5">
+                        <input type="text" className="bg-[#1F1D2B] px-4 py-2 rounded-lg outline-none" placeholder="Order noter..."/>
                       </form>
+                      <div>
+                        <button className="border border-red-500 p-2 rounded-lg"><RiDeleteBin6Line className="text-red-500"/></button>
+                      </div>
                     </div>
                   </div>
+
+                  
+                  {/* Product */}
+                  <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                    <div className="grid grid-cols-6 mb-3">
+
+                      {/* Product Description */}
+                      <div className="col-span-4 flex items-center gap-3">
+                        <img className="w-10 h-10 object-cover" src="./fotosMenu/menu1.png"/>
+                        <div>
+                          <h5 className="text-sm">Spaicy seaso...</h5>
+                          <p className="text-xs text-gray-500">$2.29</p>
+                        </div>
+                      </div>
+
+                      {/* Qty */}
+                      <div className="">
+                        <span>2</span>
+                      </div>
+
+                      {/* Price */}
+                      <div>
+                        <span>$4.58</span>
+                      </div>
+                    </div>
+              
+                    {/* Note */}
+                    <div className="grid grid-cols-6 items-center gap-2">
+                      <form className="col-span-5">
+                        <input type="text" className="bg-[#1F1D2B] px-4 py-2 rounded-lg outline-none" placeholder="Order noter..."/>
+                      </form>
+                      <div>
+                        <button className="border border-red-500 p-2 rounded-lg"><RiDeleteBin6Line className="text-red-500"/></button>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                  {/* Product */}
+                  <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                    <div className="grid grid-cols-6 mb-3">
+
+                      {/* Product Description */}
+                      <div className="col-span-4 flex items-center gap-3">
+                        <img className="w-10 h-10 object-cover" src="./fotosMenu/menu1.png"/>
+                        <div>
+                          <h5 className="text-sm">Spaicy seaso...</h5>
+                          <p className="text-xs text-gray-500">$2.29</p>
+                        </div>
+                      </div>
+
+                      {/* Qty */}
+                      <div className="">
+                        <span>2</span>
+                      </div>
+
+                      {/* Price */}
+                      <div>
+                        <span>$4.58</span>
+                      </div>
+                    </div>
+              
+                    {/* Note */}
+                    <div className="grid grid-cols-6 items-center gap-2">
+                      <form className="col-span-5">
+                        <input type="text" className="bg-[#1F1D2B] px-4 py-2 rounded-lg outline-none" placeholder="Order noter..."/>
+                      </form>
+                      <div>
+                        <button className="border border-red-500 p-2 rounded-lg"><RiDeleteBin6Line className="text-red-500"/></button>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                  {/* Product */}
+                  <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                    <div className="grid grid-cols-6 mb-3">
+
+                      {/* Product Description */}
+                      <div className="col-span-4 flex items-center gap-3">
+                        <img className="w-10 h-10 object-cover" src="./fotosMenu/menu1.png"/>
+                        <div>
+                          <h5 className="text-sm">Spaicy seaso...</h5>
+                          <p className="text-xs text-gray-500">$2.29</p>
+                        </div>
+                      </div>
+
+                      {/* Qty */}
+                      <div className="">
+                        <span>2</span>
+                      </div>
+
+                      {/* Price */}
+                      <div>
+                        <span>$4.58</span>
+                      </div>
+                    </div>
+              
+                    {/* Note */}
+                    <div className="grid grid-cols-6 items-center gap-2">
+                      <form className="col-span-5">
+                        <input type="text" className="bg-[#1F1D2B] px-4 py-2 rounded-lg outline-none" placeholder="Order noter..."/>
+                      </form>
+                      <div>
+                        <button className="border border-red-500 p-2 rounded-lg"><RiDeleteBin6Line className="text-red-500"/></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>      
+              {/* Submit Payment */}
+              <div className="bg-[#262837] absolute w-full bottom-0 left-0 p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-gray-400">Discount</span>
+                  <span>$0</span>
+                </div>
+
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-gray-400">Subtotal</span>
+                  <span>$201.03</span>
+                </div>
+
+                <div>
+                  <button className="bg-[#EC7C6A] w-full py-2 px-4 rounded-lg">Continue to payment</button>
                 </div>
               </div>
             </div>
